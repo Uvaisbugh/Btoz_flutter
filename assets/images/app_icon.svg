@@ -1,0 +1,33 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" rx="200" fill="#007AFF"/>
+  
+  <!-- Book -->
+  <path d="M200 300 L824 300 L824 724 L200 724 Z" fill="white"/>
+  <path d="M200 300 L824 300 L824 350 L200 350 Z" fill="#007AFF"/>
+  
+  <!-- Book pages -->
+  <rect x="220" y="320" width="584" height="384" fill="#F2F2F7"/>
+  <rect x="240" y="340" width="544" height="344" fill="white"/>
+  
+  <!-- Text lines -->
+  <rect x="260" y="360" width="200" height="8" rx="4" fill="#007AFF"/>
+  <rect x="260" y="380" width="180" height="6" rx="3" fill="#8E8E93"/>
+  <rect x="260" y="400" width="160" height="6" rx="3" fill="#8E8E93"/>
+  <rect x="260" y="420" width="140" height="6" rx="3" fill="#8E8E93"/>
+  
+  <rect x="260" y="460" width="200" height="8" rx="4" fill="#007AFF"/>
+  <rect x="260" y="480" width="180" height="6" rx="3" fill="#8E8E93"/>
+  <rect x="260" y="500" width="160" height="6" rx="3" fill="#8E8E93"/>
+  
+  <rect x="260" y="540" width="200" height="8" rx="4" fill="#007AFF"/>
+  <rect x="260" y="560" width="180" height="6" rx="3" fill="#8E8E93"/>
+  <rect x="260" y="580" width="160" height="6" rx="3" fill="#8E8E93"/>
+  
+  <!-- Graduation cap -->
+  <path d="M512 200 L712 300 L512 400 L312 300 Z" fill="white"/>
+  <rect x="462" y="300" width="100" height="20" fill="white"/>
+  <circle cx="512" cy="310" r="8" fill="#007AFF"/>
+  
+  <!-- BTOZ text -->
+  <text x="512" y="800" text-anchor="middle" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white">BTOZ</text>
+</svg> 
