@@ -1,6 +1,7 @@
 import 'package:btoz/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:btoz/screens/admin_dashboard.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -90,6 +91,18 @@ class LoginScreen extends StatelessWidget {
 
     final username = _usernameController.text.trim();
     final password = _passwordController.text;
+
+    // Admin login
+    if (username == 'admin' && password == 'admin123') {
+      debugPrint('Admin login successful');
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => AdminDashboardScreen()),
+      );
+      final sharedPrefs = await SharedPreferences.getInstance();
+      await sharedPrefs.setBool(USER_KEY_NAME, true);
+      return;
+    }
 
     if (username == password) {
       debugPrint('Login successful');
