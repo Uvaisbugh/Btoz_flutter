@@ -203,46 +203,24 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildStatisticsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Statistics', style: Theme.of(context).textTheme.headlineMedium),
-        const SizedBox(height: 16),
-        GridView.count(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 1.2,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildStatCard(
-              'Students',
-              totalStudents.toString(),
-              Icons.people,
-              Colors.blue,
-            ),
-            _buildStatCard(
-              'Courses',
-              totalCourses.toString(),
-              Icons.book,
-              Colors.green,
-            ),
-            _buildStatCard(
-              'Attendance',
-              totalAttendance.toString(),
-              Icons.check_circle,
-              Colors.orange,
-            ),
+            _buildStatCard('Students', totalStudents.toString()),
+            _buildStatCard('Courses', totalCourses.toString()),
+            _buildStatCard('Attendance', totalAttendance.toString()),
             _buildStatCard(
               'Revenue',
-              '\$${NumberFormat('#,##0').format(totalRevenue)}',
-              Icons.attach_money,
-              Colors.purple,
+              totalRevenue == 0.0
+                  ? 'No data'
+                  : '\$${totalRevenue.toStringAsFixed(2)}',
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 
@@ -307,142 +285,65 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildRecentStudentsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Recent Students',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-            TextButton(
-              onPressed: () => setState(() => _currentIndex = 1),
-              child: const Text('View All'),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        if (recentStudents.isNotEmpty)
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: recentStudents.length,
-            itemBuilder: (context, index) {
-              final student = recentStudents[index];
-              return Card(
-                child: ListTile(
+            const SizedBox(height: 12),
+            if (recentStudents.isEmpty)
+              Text(
+                'No students yet',
+                style: TextStyle(color: Colors.grey[600]),
+              ),
+            if (recentStudents.isNotEmpty)
+              ...recentStudents.map(
+                (student) => ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Theme.of(context).primaryColor,
-                    child: Text(
-                      student.name[0].toUpperCase(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: Text(student.name[0].toUpperCase()),
                   ),
                   title: Text(student.name),
-                  subtitle: Text('${student.course} • ${student.email}'),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () {
-                    // Navigate to student details
-                  },
-                ),
-              );
-            },
-          )
-        else
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Center(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.people_outline,
-                      size: 48,
-                      color: Colors.grey[400],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'No students yet',
-                      style: TextStyle(color: Colors.grey[600], fontSize: 16),
-                    ),
-                  ],
+                  subtitle: Text(student.email),
                 ),
               ),
-            ),
-          ),
-      ],
+          ],
+        ),
+      ),
     );
   }
 
   Widget _buildRecentCoursesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Recent Courses',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-            TextButton(
-              onPressed: () => setState(() => _currentIndex = 2),
-              child: const Text('View All'),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        if (recentCourses.isNotEmpty)
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: recentCourses.length,
-            itemBuilder: (context, index) {
-              final course = recentCourses[index];
-              return Card(
-                child: ListTile(
+            const SizedBox(height: 12),
+            if (recentCourses.isEmpty)
+              Text('No courses yet', style: TextStyle(color: Colors.grey[600])),
+            if (recentCourses.isNotEmpty)
+              ...recentCourses.map(
+                (course) => ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.green,
-                    child: const Icon(Icons.book, color: Colors.white),
+                    child: Text(course.name[0].toUpperCase()),
                   ),
                   title: Text(course.name),
-                  subtitle: Text('${course.duration} months • \$${course.fee}'),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () {
-                    // Navigate to course details
-                  },
-                ),
-              );
-            },
-          )
-        else
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Center(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.book_outlined,
-                      size: 48,
-                      color: Colors.grey[400],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'No courses yet',
-                      style: TextStyle(color: Colors.grey[600], fontSize: 16),
-                    ),
-                  ],
+                  subtitle: Text(course.instructor),
                 ),
               ),
-            ),
-          ),
-      ],
+          ],
+        ),
+      ),
     );
   }
 
@@ -493,36 +394,24 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildStatCard(
-    String title,
-    String value,
-    IconData icon,
-    Color color,
-  ) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: color, size: 32),
-            const SizedBox(height: 8),
-            Text(
-              value,
-              style: Theme.of(
-                context,
-              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              title,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
-            ),
-          ],
+  Widget _buildStatCard(String title, String value) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          value,
+          style: Theme.of(
+            context,
+          ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
         ),
-      ),
+        const SizedBox(height: 4),
+        Text(
+          title,
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
+        ),
+      ],
     );
   }
 
