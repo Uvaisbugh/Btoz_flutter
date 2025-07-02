@@ -31,14 +31,21 @@ void main() async {
     await Hive.openBox<Attendance>('attendance');
     await Hive.openBox<Payment>('payments');
 
+    // Clear all data in Hive boxes
+    await Hive.box('preferences').clear();
+    await Hive.box<Student>('students').clear();
+    await Hive.box<Course>('courses').clear();
+    await Hive.box<Attendance>('attendance').clear();
+    await Hive.box<Payment>('payments').clear();
+
     // Initialize local notifications
     await _initializeNotifications();
 
     // Check connectivity
     connectivityResult = await Connectivity().checkConnectivity();
 
-    // Initialize sample data
-    await DataInitializer.initializeSampleData();
+    // Do NOT initialize sample data
+    // await DataInitializer.initializeSampleData();
 
     runApp(const BtozApp());
   } catch (e) {
