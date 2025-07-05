@@ -1,94 +1,29 @@
-# BTOZ Academy - Educational Management System
+# Flutter Academy - Modern Educational Management System
 
-A comprehensive Flutter application for managing educational institutions with modern Material Design UI and robust data management capabilities.
+A modern Flutter application built with best practices for managing educational institutions. Features a clean Material Design 3 UI, dark/light theme support, and robust state management.
 
-## 🎓 Features
+## ✨ Features
 
-### Core Functionality
-- **Student Management**: Add, edit, delete, and search students with detailed profiles
-- **Course Management**: Create and manage courses with duration, fees, and instructor information
-- **Attendance Tracking**: Mark and track student attendance with date-based filtering
-- **Payment Management**: Record and track payments with multiple payment methods
-- **Analytics & Reports**: Comprehensive dashboard with charts and statistics
+### 🎯 Core Features
+- **Authentication**: Secure login system with admin access
+- **Student Management**: Add, view, edit, and delete students
+- **Course Management**: Create and manage courses with instructor details
+- **Attendance Tracking**: Mark and track student attendance
+- **Admin Dashboard**: Comprehensive admin interface
+- **Settings**: App configuration and theme preferences
 
-### UI/UX Features
-- **Material Design 3**: Modern, responsive UI following Material Design guidelines
-- **Dark/Light Theme**: Automatic theme switching based on system preferences
-- **Responsive Layout**: Optimized for various screen sizes
-- **Smooth Animations**: Engaging user experience with fluid transitions
-- **Intuitive Navigation**: Bottom navigation with 7 main sections
+### 🎨 UI/UX Features
+- **Material Design 3**: Modern, responsive UI
+- **Dark/Light Theme**: Toggle between light and dark themes
+- **Responsive Design**: Optimized for all screen sizes
+- **Intuitive Navigation**: Drawer-based navigation system
+- **Smooth Animations**: Fluid transitions and interactions
 
-### Technical Features
-- **Local Database**: Hive for fast, lightweight data storage
-- **Real-time Updates**: Live data synchronization across all screens
-- **Search & Filter**: Advanced search and filtering capabilities
-- **Data Visualization**: Charts and graphs for analytics
-- **Form Validation**: Comprehensive input validation and error handling
-
-## 📱 Screenshots
-
-### Dashboard
-- Overview statistics with key metrics
-- Revenue trend charts
-- Recent students and courses
-- Quick action buttons
-
-### Students
-- Student list with search functionality
-- Add new students with form validation
-- View detailed student information
-- Delete students with confirmation
-
-### Courses
-- Course management with full CRUD operations
-- Course details with instructor and schedule information
-- Revenue tracking per course
-- Active/inactive course status
-
-### Attendance
-- Take attendance for specific courses and dates
-- Filter attendance records by course and date
-- Visual indicators for present/absent students
-- Bulk attendance marking
-
-### Reports
-- Overall statistics dashboard
-- Revenue trend analysis (12-month view)
-- Attendance charts by course
-- Top performing courses
-- Recent activity feed
-
-## 🛠️ Technology Stack
-
-### Core Dependencies
-- **Flutter**: 3.8.1+ (Latest stable)
-- **Dart**: 3.8.1+
-
-### State Management & Database
-- **Hive**: Lightweight, fast NoSQL database
-- **Hive Flutter**: Flutter integration for Hive
-- **UUID**: Unique identifier generation
-
-### UI & Design
-- **Material Design Icons**: Extended icon set
-- **Fl Chart**: Beautiful charts and graphs
-- **Flutter Spinkit**: Loading animations
-- **Intl**: Internationalization and date formatting
-
-### Additional Features
-- **Shared Preferences**: Simple key-value storage
-- **Flutter Local Notifications**: Local notification system
-- **Connectivity Plus**: Network connectivity checking
-- **URL Launcher**: External link handling
-- **File Picker**: Document upload functionality
-- **PDF**: PDF generation capabilities
-- **QR Flutter**: QR code generation
-- **Mobile Scanner**: Barcode scanning
-
-### Development Tools
-- **Build Runner**: Code generation
-- **Hive Generator**: Hive adapter generation
-- **Flutter Lints**: Code quality and style enforcement
+### 🛠️ Technical Features
+- **State Management**: Provider for scalable state management
+- **Local Storage**: Hive database for fast data persistence
+- **Code Generation**: Build runner for Hive adapters
+- **Modern Architecture**: Clean, maintainable code structure
 
 ## 🚀 Getting Started
 
@@ -96,15 +31,14 @@ A comprehensive Flutter application for managing educational institutions with m
 - Flutter SDK (3.8.1 or higher)
 - Dart SDK (3.8.1 or higher)
 - Android Studio / VS Code
-- Android SDK (for Android development)
-- Xcode (for iOS development, macOS only)
+- Git
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/btoz-academy.git
-   cd btoz-academy
+   git clone <repository-url>
+   cd Btoz_flutter
    ```
 
 2. **Install dependencies**
@@ -114,7 +48,7 @@ A comprehensive Flutter application for managing educational institutions with m
 
 3. **Generate Hive adapters**
    ```bash
-   flutter packages pub run build_runner build
+   flutter packages pub run build_runner build --delete-conflicting-outputs
    ```
 
 4. **Run the application**
@@ -122,216 +56,126 @@ A comprehensive Flutter application for managing educational institutions with m
    flutter run
    ```
 
-### Platform Support
-- ✅ Android (API 21+)
-- ✅ iOS (iOS 11.0+)
-- ✅ Web (Chrome, Firefox, Safari, Edge)
-- ✅ Windows (Windows 10+)
-- ✅ macOS (macOS 10.14+)
-- ✅ Linux (Ubuntu 18.04+)
+### Login Credentials
+- **Username**: `admin`
+- **Password**: `admin123`
 
 ## 📁 Project Structure
 
 ```
 lib/
-├── main.dart                 # App entry point and theme configuration
-├── models/                   # Data models with Hive annotations
-│   ├── student.dart         # Student model
-│   ├── course.dart          # Course model
-│   ├── attendance.dart      # Attendance model
-│   └── payment.dart         # Payment model
-├── screens/                  # UI screens
-│   ├── splash.dart          # Splash screen with animations
-│   ├── home.dart            # Main dashboard
-│   ├── students.dart        # Student management
-│   ├── courses.dart         # Course management
-│   ├── attendance.dart      # Attendance tracking
-│   ├── reports.dart         # Analytics and reports
-│   ├── login.dart           # Authentication screen
-│   └── option.dart          # Options/settings screen
-├── services/                 # Business logic and data services
-│   ├── data_initializer.dart # Sample data initialization
-│   ├── student_service.dart  # Student operations
-│   ├── course_service.dart   # Course operations
-│   ├── attendance_service.dart # Attendance operations
-│   └── payment_service.dart  # Payment operations
-└── assets/                   # Static assets
-    └── images/              # App icons and images
+├── main.dart                    # App entry point with Provider setup
+├── core/                        # Core app configuration
+│   ├── theme.dart              # Theme configuration and ThemeProvider
+│   └── app_constants.dart      # App-wide constants
+├── models/                      # Data models with Hive annotations
+│   ├── student.dart            # Student model
+│   ├── course.dart             # Course model
+│   └── attendance.dart         # Attendance model
+├── screens/                     # UI screens organized by feature
+│   ├── home/                   # Home dashboard
+│   │   └── home_screen.dart
+│   ├── login/                  # Authentication
+│   │   └── login_screen.dart
+│   ├── students/               # Student management
+│   │   └── students_screen.dart
+│   ├── courses/                # Course management
+│   │   └── courses_screen.dart
+│   ├── attendance/             # Attendance tracking
+│   │   └── attendance_screen.dart
+│   ├── admin/                  # Admin dashboard
+│   │   └── admin_screen.dart
+│   └── settings/               # App settings
+│       └── settings_screen.dart
+├── services/                    # Business logic and data services
+└── widgets/                     # Reusable UI components
 ```
+
+## 🛠️ Technology Stack
+
+### Core Dependencies
+- **Flutter**: 3.8.1+
+- **Dart**: 3.8.1+
+
+### State Management & Storage
+- **Provider**: State management
+- **Hive**: Local NoSQL database
+- **Hive Flutter**: Flutter integration for Hive
+- **Shared Preferences**: Simple key-value storage
+
+### Development Tools
+- **Build Runner**: Code generation
+- **Hive Generator**: Hive adapter generation
+- **Flutter Lints**: Code quality enforcement
 
 ## 🎨 Design System
 
-### Color Palette
+### Theme Support
+- **Light Theme**: Clean, bright interface
+- **Dark Theme**: Easy on the eyes
+- **System Theme**: Automatic theme switching
+- **Manual Toggle**: User-controlled theme switching
+
+### Color Scheme
 - **Primary**: Blue (#1976D2)
-- **Primary Light**: Light Blue (#42A5F5)
-- **Primary Dark**: Dark Blue (#1565C0)
-- **Secondary**: Green (#4CAF50)
-- **Accent**: Orange (#FF9800)
-- **Success**: Green (#4CAF50)
-- **Error**: Red (#F44336)
-- **Warning**: Orange (#FF9800)
+- **Secondary**: Light Blue (#42A5F5)
+- **Surface**: Material Design 3 surface colors
+- **On Surface**: Contrasting text colors
 
-### Typography
-- **Headline Large**: 32px, Bold
-- **Headline Medium**: 24px, Semi-bold
-- **Title Large**: 20px, Semi-bold
-- **Body Large**: 16px, Regular
-- **Body Medium**: 14px, Regular
-- **Body Small**: 12px, Regular
+## 📱 Screenshots
 
-### Components
-- **Cards**: Elevated with rounded corners (12px radius)
-- **Buttons**: Material Design with consistent styling
-- **Input Fields**: Outlined with focus states
-- **Navigation**: Bottom navigation bar with icons and labels
+### Login Screen
+- Clean authentication interface
+- Form validation
+- Loading states
 
-## 📊 Data Models
+### Home Dashboard
+- Welcome message
+- Navigation drawer
+- Quick access to all features
 
-### Student
-```dart
-class Student {
-  String id;
-  String name;
-  String email;
-  String phone;
-  String course;
-  int age;
-  DateTime createdAt;
-}
+### Settings
+- Dark mode toggle
+- App configuration options
+
+## 🔧 Development
+
+### Code Generation
+After modifying Hive models, regenerate adapters:
+```bash
+flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
-### Course
-```dart
-class Course {
-  String id;
-  String name;
-  String description;
-  int duration; // months
-  double fee;
-  String instructor;
-  DateTime startDate;
-  DateTime endDate;
-  bool isActive;
-  DateTime createdAt;
-}
-```
+### Adding New Features
+1. Create models in `lib/models/`
+2. Add screens in `lib/screens/[feature]/`
+3. Update navigation in `lib/screens/home/home_screen.dart`
+4. Add routes in `lib/main.dart` if needed
 
-### Attendance
-```dart
-class Attendance {
-  String id;
-  String studentId;
-  String courseId;
-  DateTime date;
-  bool isPresent;
-  String? remarks;
-  DateTime createdAt;
-}
-```
-
-### Payment
-```dart
-class Payment {
-  String id;
-  String studentId;
-  String courseId;
-  double amount;
-  String paymentMethod;
-  String status; // pending, completed, failed, refunded
-  DateTime paymentDate;
-  String? transactionId;
-  String? notes;
-  DateTime createdAt;
-}
-```
-
-## 🔧 Configuration
-
-### pubspec.yaml
-The project includes comprehensive dependencies with detailed comments explaining each package's purpose:
-
-- **Core Flutter dependencies**
-- **State Management & Data Persistence**
-- **UI & Design Dependencies**
-- **Charts and data visualization**
-- **Date and time handling**
-- **Image handling and caching**
-- **Form validation**
-- **Loading animations**
-- **Toast notifications**
-- **Permission handling**
-- **File operations**
-- **PDF generation**
-- **QR code functionality**
-- **Local notifications**
-- **HTTP requests**
-- **JSON serialization**
-- **URL launching**
-- **Connectivity checking**
-- **Device information**
-- **Secure storage**
-- **Biometric authentication**
-- **Google Sign-In**
-- **Firebase services** (optional)
-
-### Analysis Options
-- Flutter Lints for code quality
-- Customizable lint rules
-- Comprehensive error checking
-
-## 🚀 Deployment
-
-### Android
-1. Update `android/app/build.gradle.kts` with your app details
-2. Generate signed APK/Bundle
-3. Upload to Google Play Store
-
-### iOS
-1. Update `ios/Runner/Info.plist` with your app details
-2. Configure signing in Xcode
-3. Archive and upload to App Store Connect
-
-### Web
-1. Build for web: `flutter build web`
-2. Deploy to your preferred hosting service
+### State Management
+- Use `Provider` for app-wide state
+- Use `ChangeNotifier` for reactive state
+- Keep state close to where it's used
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit your changes: `git commit -am 'Add feature'`
-4. Push to the branch: `git push origin feature-name`
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
 5. Submit a pull request
 
-## 📝 License
+## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+## 🆘 Support
 
-- Flutter team for the amazing framework
-- Hive team for the lightweight database solution
-- Fl Chart team for beautiful charts
-- Material Design team for design guidelines
-- All contributors and supporters
-
-## 📞 Support
-
-For support and questions:
-- Create an issue on GitHub
-- Email: support@btozacademy.com
-- Documentation: [docs.btozacademy.com](https://docs.btozacademy.com)
-
-## 🔄 Version History
-
-### v1.0.0 (Current)
-- Initial release
-- Complete CRUD operations for all entities
-- Material Design 3 UI
-- Comprehensive analytics and reporting
-- Local database with Hive
-- Multi-platform support
+If you encounter any issues or have questions:
+1. Check the existing issues
+2. Create a new issue with detailed information
+3. Include error messages and steps to reproduce
 
 ---
 
-**BTOZ Academy** - Empowering Education Management
+**Built with ❤️ using Flutter**
